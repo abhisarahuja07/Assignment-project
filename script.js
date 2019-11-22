@@ -11,7 +11,7 @@
   }
   
   function weather1(lat, long) {
-    var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
+    var URL = `https://cors-anywhere.herokuapp.com/https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
     $.getJSON(URL, function(data){
       updateDOM1(data);
     });
@@ -25,7 +25,7 @@
     var icon = data.weather[0].icon;
     
     $("#city").html(city);
-    $("#temp").html(temp);
+    $("#temp").html(temp+'<sup>0</sup>');
     $("#desc").html(desc);
     $("#icon").attr("src", icon); 
     
@@ -46,7 +46,7 @@
   }
   
   function weather(lat, long) {
-    var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
+    var URL = `https://cors-anywhere.herokuapp.com/https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
     $.getJSON(URL, function(data){
       updateDOM(data);
     });
@@ -54,6 +54,7 @@
   
   
   function updateDOM(data) {
+    console.log(data);
     var city = data.name;
     var temp = Math.round(data.main.temp);
     var desc = data.weather[0].description;

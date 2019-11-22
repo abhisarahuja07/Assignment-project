@@ -1,9 +1,10 @@
 body {
 	margin: 0 auto;
 	font-family: Open Sans, 'sans-serif';
-	background-color: #ffffff;
-	color: #000000;
+	background-color: #444444;
 	padding: 20px 0px 50px 0px;
+	color:#f5f5f5;
+	text-align: center;
 
 }
 
@@ -38,6 +39,8 @@ button {
 	font-size: 20px;
 	padding: 10px;
 	border-radius: 10px;
+	margin-top: 5%;
+	margin-bottom: 2%;
 
 }
 
@@ -48,5 +51,39 @@ input {
 	font-family: Open Sans;
 	font-weight: 100;
 	margin-left: 1px;
+	border: none;
+	outline: none;
+	padding: 20px;
+	color: #444444;
+	border-radius: 20px;
+	font-size: 25px;
+
+}
+
+.img{
+	height: 720vh;
+}
+
+
+.card{
+	width:60vw;
+	margin: auto;
+	height: 300px;
+	background: #f5f5f5;
+	font-size: 2rem;
+	border-radius: 20px;
+	color: #1b1b1b;
+}
+
+
+@media(max-width: 500px){
+	.card{
+	width:80vw;
+	margin: auto;
+	height: 300px;
+	background: #f5f5f5;
+	font-size: 1.3rem;
+	border-radius: 20px;
+}
 
 }
