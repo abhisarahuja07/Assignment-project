@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<title>Home</title>
+</head>
+<body>
+<center style="top:50%; left:50%; transform:translate(-50%,-50%); position:absolute;">
+	<div id="showimg">
+		<button class="btn-primary" onclick="find()">FIND COUNTRIES</button>
+		<br><br>
+		<button class="btn-primary" onclick="findpersons()">FIND PLAYERS</button>
+		<br><br>
+		<button class="btn-primary" onclick="findpersons()">FIND COUNTRIES</button>
+	</div>
+</center>
+<script type="text/javascript">
+	function find()
+	{
+		var data = null;
+		var xhr = new XMLHttpRequest();
+		xhr.withCredentials = true;
+		var arr = [];
+		var text ="";
+		text+="<h2>TEAMS</h2><br><br>";
+		xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === this.DONE) {
+				arr= JSON.parse(this.responseText);
+				for(var i=0;i<40;i++)
+				{
+					text+=arr[i].title+"<br>";
+				}
+				document.getElementById("showimg").innerHTML = text;
+			}
+		});
+
+		xhr.open("GET", "https://montanaflynn-fifa-world-cup.p.rapidapi.com/teams");
+		xhr.setRequestHeader("x-rapidapi-host", "montanaflynn-fifa-world-cup.p.rapidapi.com");
+		xhr.setRequestHeader("x-rapidapi-key", "fffbb0c4c7msh1c63bf923a453f1p1ca184jsncebbdf3cc4ab");
+		xhr.setRequestHeader("accepts", "json");
+
+		xhr.send(data);
+	}
+	function findpersons()
+	{
+		var data = null;
+
+		var thr = new XMLHttpRequest();
+		thr.withCredentials = true;
+		var arr = [];
+		var text ="";
+		text+="<h2>PLAYERS</h2><br><br>";
+		var test="";
+		thr.addEventListener("readystatechange", function () {
+			test = this.responseText;
+			var tes = "";
+			var count=0;
+			for(var i=0;i<test.length;i++)
+			{
+				tes+=test[i];
+				if(test[i]=='}')
+				{
+					count++;
+				}
+				if(count==2)
+				{
+					tes+=']';
+					break;
+				}
+			}
+			console.log(tes);
+			arr = JSON.parse(tes);
+			document.getElementById('showimg').innerHTML = tes;
+		});
+
+		thr.open("GET", "https://montanaflynn-fifa-world-cup.p.rapidapi.com/persons");
+		thr.setRequestHeader("x-rapidapi-host", "montanaflynn-fifa-world-cup.p.rapidapi.com");
+		thr.setRequestHeader("x-rapidapi-key", "fffbb0c4c7msh1c63bf923a453f1p1ca184jsncebbdf3cc4ab");
+		thr.setRequestHeader("accepts", "json");
+
+		thr.send(data);
+	}
+</script>
+</body>
+</html>
